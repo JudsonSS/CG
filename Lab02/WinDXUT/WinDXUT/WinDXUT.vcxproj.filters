@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DXUT">
+      <UniqueIdentifier>{524ee735-94a8-44ab-8ee4-8e2fd3c9c244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXUT\Arquivos de Cabeçalho">
+      <UniqueIdentifier>{f9f065ed-ccc7-4dc8-a106-cf9fb24f0e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXUT\Arquivos de Origem">
+      <UniqueIdentifier>{c68f97b5-0e98-4a67-9587-8a08a173b94d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXUT\Arquivos de Recurso">
+      <UniqueIdentifier>{afc6adf4-a8d7-4d7a-805f-2ad5229d0d12}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resources.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Window.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="WinDXUT.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>DXUT\Arquivos de Recurso</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
