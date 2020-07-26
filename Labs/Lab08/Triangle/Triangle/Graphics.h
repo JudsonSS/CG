@@ -2,7 +2,7 @@
 // Graphics (Arquivo de Cabeçalho)
 // 
 // Criação:		06 Abr 2011
-// Atualização:	02 Fev 2020
+// Atualização:	26 Jul 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Usa funções do Direct3D 12 para acessar a GPU
@@ -17,8 +17,11 @@
 
 #include <dxgi1_6.h>		// infraestrutura gráfica do DirectX
 #include <d3d12.h>			// principais funções do Direct3D
+#include <D3DCompiler.h>	// fornece D3DBlob
 #include "Window.h"			// cria e configura uma janela do Windows
 #include "Types.h"			// tipos específicos da engine
+
+enum AllocationType { GPU, UPLOAD };
 
 // --------------------------------------------------------------------------------
 
@@ -68,6 +71,22 @@ public:
 
 	void ResetCommands();									// reinicia lista para receber novos comandos
 	void SubmitCommands();									// submete para execução os comandos pendentes
+
+	void Allocate(uint sizeInBytes,
+		          ID3DBlob** resource);						// aloca memória da CPU para recurso
+
+	void Allocate(uint type,
+		          uint sizeInBytes, 
+		          ID3D12Resource** resource);	            // aloca memória da GPU para recurso
+
+	void Copy(const void* vertices,
+		      uint sizeInBytes,
+		      ID3DBlob* bufferCPU);							// copia vértices para Blob na CPU
+
+	void Copy(const void* vertices, 
+		      uint sizeInBytes,
+		      ID3D12Resource* bufferUpload,
+		      ID3D12Resource* bufferGPU);					// copia vértices para a GPU
 
 	ID3D12Device4* Device();								// retorna dispositivo Direct3D
 	ID3D12GraphicsCommandList* CommandList();				// retorna lista de comandos

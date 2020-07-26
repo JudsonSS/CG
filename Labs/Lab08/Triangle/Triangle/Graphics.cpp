@@ -2,7 +2,7 @@
 // Graphics (Código Fonte)
 // 
 // Criação:		06 Abr 2011
-// Atualização:	02 Fev 2020
+// Atualização:	26 Jul 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Usa funções do Direct3D 12 para acessar a GPU
@@ -564,6 +564,148 @@ void Graphics::SubmitCommands()
 
 	// espera até a GPU completar a execução dos comandos
 	WaitCommandQueue();
+}
+
+// -----------------------------------------------------------------------------
+
+void Graphics::Allocate(uint sizeInBytes, ID3DBlob** resource)
+{
+	D3DCreateBlob(sizeInBytes, resource);
+}
+
+// -----------------------------------------------------------------------------
+
+void Graphics::Allocate(uint type, uint sizeInBytes, ID3D12Resource** resource)
+{
+	// propriedades da heap do buffer
+	D3D12_HEAP_PROPERTIES bufferProp = {};	
+	bufferProp.Type = D3D12_HEAP_TYPE_DEFAULT;
+	bufferProp.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+	bufferProp.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+	bufferProp.CreationNodeMask = 1;
+	bufferProp.VisibleNodeMask = 1;
+	
+	if (type == UPLOAD)
+		bufferProp.Type = D3D12_HEAP_TYPE_UPLOAD;
+
+	// descrição do buffer 
+	D3D12_RESOURCE_DESC bufferDesc = {};
+	bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+	bufferDesc.Alignment = 0;
+	bufferDesc.Width = sizeInBytes;
+	bufferDesc.Height = 1;
+	bufferDesc.DepthOrArraySize = 1;
+	bufferDesc.MipLevels = 1;
+	bufferDesc.Format = DXGI_FORMAT_UNKNOWN;
+	bufferDesc.SampleDesc.Count = 1;
+	bufferDesc.SampleDesc.Quality = 0;
+	bufferDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+	bufferDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+
+	D3D12_RESOURCE_STATES initState = D3D12_RESOURCE_STATE_COMMON;
+	
+	if (type == UPLOAD)
+		initState = D3D12_RESOURCE_STATE_GENERIC_READ;
+
+	// cria um buffer para o recurso
+	ThrowIfFailed(device->CreateCommittedResource(
+		&bufferProp,
+		D3D12_HEAP_FLAG_NONE,
+		&bufferDesc,
+		initState,
+		nullptr,
+		IID_PPV_ARGS(resource)));
+}
+
+// -----------------------------------------------------------------------------
+
+void Graphics::Copy(const void* vertices, uint sizeInBytes, ID3DBlob* bufferCPU)
+{
+	CopyMemory(bufferCPU->GetBufferPointer(), vertices, sizeInBytes);
+}
+
+// -----------------------------------------------------------------------------
+
+void Graphics::Copy(const void* vertices, uint sizeInBytes, ID3D12Resource* bufferUpload, ID3D12Resource* bufferGPU)
+{
+	// ------------------------------------------
+	// Copia vértices para o buffer padrão (GPU)
+	// ------------------------------------------
+
+	// descreve os dados que serão copiados para o buffer padrão
+	D3D12_SUBRESOURCE_DATA vertexSubResourceData = {};
+	vertexSubResourceData.pData = vertices;
+	vertexSubResourceData.RowPitch = sizeInBytes;
+	vertexSubResourceData.SlicePitch = sizeInBytes;
+
+	// altera estado da memória na GPU para receber dados dos vértices
+	D3D12_RESOURCE_BARRIER barrier = {};
+	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+	barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
+	barrier.Transition.pResource = bufferGPU;
+	barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_COMMON;
+	barrier.Transition.StateAfter = D3D12_RESOURCE_STATE_COPY_DEST;
+	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+	commandList->ResourceBarrier(1, &barrier);
+
+	// copia dados para o buffer padrão (GPU)
+	// primeiro copia-se os dados para a heap intermediária de upload
+	// depois usando ID3D12CommandList::CopyBufferRegion copia-se de upload para a GPU
+	ullong requiredSize = 0;
+	D3D12_PLACED_SUBRESOURCE_FOOTPRINT layouts;
+	uint numRows;
+	ullong rowSizesInBytes;
+
+	// pega layout da memória de um recurso (vertex buffer na GPU)
+	device->GetCopyableFootprints(
+		&bufferGPU->GetDesc(),
+		0, 1, 0, &layouts, &numRows,
+		&rowSizesInBytes, &requiredSize);
+
+	// trava memória do upload buffer para acesso exclusivo 
+	BYTE* pData;
+	bufferUpload->Map(0, nullptr, (void**)&pData);
+
+	// descreve o destino de uma operação de cópia
+	D3D12_MEMCPY_DEST DestData =
+	{
+		pData + layouts.Offset,
+		layouts.Footprint.RowPitch,
+		layouts.Footprint.RowPitch * numRows
+	};
+
+	// copia vértices no upload buffer
+	for (uint z = 0; z < layouts.Footprint.Depth; ++z)
+	{
+		BYTE* destSlice = (BYTE*)(DestData.pData) + DestData.SlicePitch * z;
+		const BYTE* srcSlice = (const BYTE*)(vertexSubResourceData.pData) + vertexSubResourceData.SlicePitch * z;
+		for (uint y = 0; y < numRows; ++y)
+			memcpy(
+				destSlice + DestData.RowPitch * y,
+				srcSlice + vertexSubResourceData.RowPitch * y,
+				(size_t)rowSizesInBytes);
+	}
+
+	// libera trava de memória do upload buffer 
+	bufferUpload->Unmap(0, nullptr);
+
+	// copia vertex buffer do upload buffer para a GPU
+	commandList->CopyBufferRegion(
+		bufferGPU,
+		0,
+		bufferUpload,
+		layouts.Offset,
+		layouts.Footprint.Width);
+
+	// altera estado da memória na GPU de escrita para leitura
+	barrier = {};
+	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+	barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
+	barrier.Transition.pResource = bufferGPU;
+	barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_COPY_DEST;
+	barrier.Transition.StateAfter = D3D12_RESOURCE_STATE_GENERIC_READ;
+	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+	commandList->ResourceBarrier(1, &barrier);
 }
 
 // -----------------------------------------------------------------------------
