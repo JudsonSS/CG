@@ -204,14 +204,12 @@ void Triangle::BuildPipelineState()
 
 void Triangle::BuildGeometry()
 {
-	float aspectRatio = window->Width() / float(window->Height());
-
 	// vértices da geometria
 	Vertex vertices[3] =
 	{
-		{ XMFLOAT3(0.0f, 0.25f * aspectRatio, 0.0f), XMFLOAT4(Colors::Red) },
-		{ XMFLOAT3(0.25f, -0.25f * aspectRatio, 0.0f), XMFLOAT4(Colors::Orange) },
-		{ XMFLOAT3(-0.25f, -0.25f * aspectRatio, 0.0f), XMFLOAT4(Colors::Yellow) }
+		{ XMFLOAT3(0.0f, 0.5f, 0.0f), XMFLOAT4(Colors::Red) },
+		{ XMFLOAT3(0.5f, -0.5f, 0.0f), XMFLOAT4(Colors::Orange) },
+		{ XMFLOAT3(-0.5f, -0.5f, 0.0f), XMFLOAT4(Colors::Yellow) }
 	};
 
 	// tamanho em bytes dos vértices
