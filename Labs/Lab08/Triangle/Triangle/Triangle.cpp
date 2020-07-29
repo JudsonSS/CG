@@ -2,7 +2,7 @@
 // Triangle (Código Fonte)
 //
 // Criação:		22 Jul 2020
-// Atualização:	26 Jul 2020
+// Atualização:	29 Jul 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Constrói um Triângulo usando o Direct3D 12
@@ -213,10 +213,10 @@ void Triangle::BuildGeometry()
 	};
 
 	// tamanho em bytes dos vértices
-	const uint vbSize = 8 * sizeof(Vertex);
+	const uint vbSize = 3 * sizeof(Vertex);
 
 	// cria malha 3D
-	geometry = new Mesh("Geometry");
+	geometry = new Mesh("Triangle");
 
 	// ajusta atributos da malha 3D
 	geometry->VertexByteStride = sizeof(Vertex);
