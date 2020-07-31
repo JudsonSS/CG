@@ -628,35 +628,29 @@ void Graphics::Copy(const void* vertices, uint sizeInBytes, ID3DBlob* bufferCPU)
 
 void Graphics::Copy(const void* vertices, uint sizeInBytes, ID3D12Resource* bufferUpload, ID3D12Resource* bufferGPU)
 {
-	// ------------------------------------------
+	// ----------------------------------------------------------------------------------
 	// Copia vértices para o buffer padrão (GPU)
-	// ------------------------------------------
+	// ----------------------------------------------------------------------------------
+	//
+	//  Para copiar dados para a GPU:
+	//  - primeiro copia-se os dados para a heap intermediária de upload
+	//  - depois usando ID3D12CommandList::CopyBufferRegion copia-se de upload para a GPU
+	//
+	// ----------------------------------------------------------------------------------
 
-	// descreve os dados que serão copiados para o buffer padrão
+	// descreve os dados que serão copiados
 	D3D12_SUBRESOURCE_DATA vertexSubResourceData = {};
 	vertexSubResourceData.pData = vertices;
 	vertexSubResourceData.RowPitch = sizeInBytes;
 	vertexSubResourceData.SlicePitch = sizeInBytes;
 
-	// altera estado da memória na GPU para receber dados dos vértices
-	D3D12_RESOURCE_BARRIER barrier = {};
-	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
-	barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
-	barrier.Transition.pResource = bufferGPU;
-	barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_COMMON;
-	barrier.Transition.StateAfter = D3D12_RESOURCE_STATE_COPY_DEST;
-	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
-	commandList->ResourceBarrier(1, &barrier);
-
-	// copia dados para o buffer padrão (GPU)
-	// primeiro copia-se os dados para a heap intermediária de upload
-	// depois usando ID3D12CommandList::CopyBufferRegion copia-se de upload para a GPU
-	ullong requiredSize = 0;
+	// descreve o layout da memória de vídeo (GPU)
 	D3D12_PLACED_SUBRESOURCE_FOOTPRINT layouts;
 	uint numRows;
 	ullong rowSizesInBytes;
+	ullong requiredSize = 0;
 
-	// pega layout da memória de um recurso (vertex buffer na GPU)
+	// pega layout da memória de vídeo
 	device->GetCopyableFootprints(
 		&bufferGPU->GetDesc(),
 		0, 1, 0, &layouts, &numRows,
@@ -688,6 +682,16 @@ void Graphics::Copy(const void* vertices, uint sizeInBytes, ID3D12Resource* buff
 
 	// libera trava de memória do upload buffer 
 	bufferUpload->Unmap(0, nullptr);
+
+	// altera estado da memória na GPU de leitura para escrita
+	D3D12_RESOURCE_BARRIER barrier = {};
+	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+	barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
+	barrier.Transition.pResource = bufferGPU;
+	barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_COMMON;
+	barrier.Transition.StateAfter = D3D12_RESOURCE_STATE_COPY_DEST;
+	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+	commandList->ResourceBarrier(1, &barrier);
 
 	// copia vertex buffer do upload buffer para a GPU
 	commandList->CopyBufferRegion(
