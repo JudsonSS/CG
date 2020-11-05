@@ -2,7 +2,7 @@
 // InputKeys (Código Fonte)
 //
 // Criação:		06 Jan 2020
-// Atualização:	11 Jan 2020
+// Atualização:	04 Nov 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa funcionalidades de leitura do teclado
@@ -41,7 +41,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 
-		if (input->KeyCtrl(VK_ESCAPE))
+		if (input->KeyPress(VK_ESCAPE))
 			window->Close();
 
 		// CTRL, ENTER, ESPAÇO
@@ -63,7 +63,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 			window->Print("DOWN", x - 20, y + 20, RGB(255,255,255));
 
 		// teclar R
-		if (input->KeyCtrl('R'))
+		if (input->KeyPress('R'))
 			window->Clear();
 	} 
 
