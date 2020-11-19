@@ -2,7 +2,7 @@
 // LoopDXUT (Código Fonte)
 //
 // Criação:		11 Jan 2020
-// Atualização:	15 Jan 2020
+// Atualização:	19 Nov 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa a execução de uma aplicação em um laço de tempo-real
@@ -49,7 +49,7 @@ void WinApp::Init()
 void WinApp::Update()
 {
 	// sai com o pressionamento da tecla ESC
-	if (input->KeyCtrl(VK_ESCAPE))
+	if (input->KeyPress(VK_ESCAPE))
 		window->Close();
 
 	// converte posição do mouse em texto para exibição

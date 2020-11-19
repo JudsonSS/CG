@@ -2,7 +2,7 @@
 // Input (Código Fonte)
 //
 // Criação:		06 Jan 2020
-// Atualização:	11 Jan 2020
+// Atualização:	19 Nov 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A classe Input concentra todas as tarefas relacionadas
@@ -17,9 +17,9 @@
 
 bool  Input::keys[256] = { 0 };						// estado do teclado/mouse
 bool  Input::ctrl[256] = { 0 };						// controle de liberação das teclas
-int	  Input::mouseX = 0;								// posição do mouse no eixo x
-int	  Input::mouseY = 0;								// posição do mouse no eixo y
-short Input::mouseWheel = 0;							// valor da roda do mouse
+int	  Input::mouseX = 0;							// posição do mouse no eixo x
+int	  Input::mouseY = 0;							// posição do mouse no eixo y
+short Input::mouseWheel = 0;						// valor da roda do mouse
 
 uint Input::textIndex = 0;							// posição atual de inserção em "text"
 char Input::text[textLimit] = { 0 };				// guarda caracteres digitados
@@ -43,7 +43,7 @@ Input::~Input()
 
 // -------------------------------------------------------------------------------
 
-bool Input::KeyCtrl(int vkcode)
+bool Input::KeyPress(int vkcode)
 {
 	if (ctrl[vkcode])
 	{

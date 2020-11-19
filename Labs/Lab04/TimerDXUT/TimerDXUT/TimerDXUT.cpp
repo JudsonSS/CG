@@ -2,7 +2,7 @@
 // TimerDXUT (Código Fonte)
 //
 // Criação:		16 Jan 2020
-// Atualização:	16 Jan 2020
+// Atualização:	19 Nov 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa as funcionalidades de animação do motor DXUT
@@ -34,7 +34,7 @@ void WinApp::Init()
 void WinApp::Update()
 {
 	// sai com o pressionamento da tecla ESC
-	if (input->KeyCtrl(VK_ESCAPE))
+	if (input->KeyPress(VK_ESCAPE))
 		window->Close();
 }
 

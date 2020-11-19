@@ -2,7 +2,7 @@
 // Input (Arquivo de Cabeçalho)
 //
 // Criação:		17 Abr 2016
-// Atualização:	11 Jan 2020
+// Atualização:	19 Nov 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A classe Input concentra todas as tarefas relacionadas 
@@ -24,8 +24,8 @@ class Input
 private:
 	static bool	 keys[256];				// estado das teclas do teclado/mouse
 	static bool  ctrl[256];				// controle da liberação de teclas
-	static int	 mouseX;					// posição do mouse eixo x
-	static int	 mouseY;					// posição do mouse eixo y
+	static int	 mouseX;				// posição do mouse eixo x
+	static int	 mouseY;				// posição do mouse eixo y
 	static short mouseWheel;			// valor da roda do mouse
 
 	static const uint textLimit = 80;	// tamanho máximo do texto
@@ -37,8 +37,8 @@ public:
 	~Input();							// destrutor
 
 	bool  KeyDown(int vkcode);			// verifica se uma tecla/botão está pressionado
-	bool  KeyUp(int vkcode);				// verifica se uma tecla/botão está liberado
-	bool  KeyCtrl(int vkcode);			// registra pressionamente somente após liberação		
+	bool  KeyUp(int vkcode);			// verifica se uma tecla/botão está liberado
+	bool  KeyPress(int vkcode);			// registra pressionamente somente após liberação		
 	
 	int   MouseX();						// retorna posição x do mouse
 	int   MouseY();						// retorna posição y do mouse
