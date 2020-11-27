@@ -2,7 +2,7 @@
 // Input (Código Fonte)
 //
 // Criação:		17 Abr 2016
-// Atualização:	22 Jan 2020
+// Atualização:	27 Nov 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A classe Input concentra todas as tarefas relacionadas
@@ -43,7 +43,7 @@ Input::~Input()
 
 // -------------------------------------------------------------------------------
 
-bool Input::KeyCtrl(int vkcode)
+bool Input::KeyPress(int vkcode)
 {
 	if (ctrl[vkcode])
 	{

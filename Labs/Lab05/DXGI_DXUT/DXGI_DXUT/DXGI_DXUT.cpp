@@ -2,7 +2,7 @@
 // DXGI_DXUT (Código Fonte)
 //
 // Criação:		19 Jan 2020
-// Atualização:	02 Fev 2020
+// Atualização:	27 Nov 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa a infraestrutura gráfica do DirectX
@@ -36,7 +36,7 @@ void DXApp::Init()
 void DXApp::Update()
 {
 	// sai com o pressionamento da tecla ESC
-	if (input->KeyCtrl(VK_ESCAPE))
+	if (input->KeyPress(VK_ESCAPE))
 		window->Close();
 }
 
