@@ -13,5 +13,6 @@ O número dos laboratórios seguem o número das aulas, de acordo com a sequênc
 06. Inicialização do Direct3D
 07. Pipeline Gráfico
 08. Desenho no Direct3D
+09. Curvas no Plano
 
 O material está sendo constantemente revisado e melhorado. Qualquer contribuição é bem vinda.
