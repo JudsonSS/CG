@@ -2,7 +2,7 @@
 // ProgWindows
 // 
 // Criação:		04 Jan 2020
-// Atualização:	10 Jan 2020
+// Atualização:	24 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Esqueleto básico de criação de uma janela no Windows 
