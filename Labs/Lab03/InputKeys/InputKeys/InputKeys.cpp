@@ -35,6 +35,8 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	int x = window->CenterX();
 	int y = window->CenterY();
 
+	window->Print("Teste de Captura de Teclas", x - 110, y - 150, RGB(255,255,255));
+
 	// trata as mensagens destinadas a janela
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
@@ -46,25 +48,28 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 		// CTRL, ENTER, ESPAÇO
 		if (input->KeyDown(VK_CONTROL))
-			window->Print("CTRL", x - 120, y + 150, RGB(255, 255, 255));
+			window->Print("CTRL", x-125, y+150, RGB(255,255,255));
 		if (input->KeyDown(VK_RETURN))
-			window->Print("ENTER", x - 20, y + 150, RGB(255, 255, 255));
+			window->Print("ENTER", x-25, y+150, RGB(255,255,255));
 		if (input->KeyDown(VK_SPACE))
-			window->Print("SPACE", x + 80, y + 150, RGB(255, 255, 255));
+			window->Print("SPACE", x+75, y+150, RGB(255,255,255));
 
 		// setas de direção
 		if (input->KeyDown(VK_LEFT))
-			window->Print("LEFT", x - 40, y, RGB(255,255,255));
+			window->Print("LEFT", x-45, y, RGB(255,255,255));
 		if (input->KeyDown(VK_RIGHT))
 			window->Print("RIGHT", x, y, RGB(255,255,255));
 		if (input->KeyDown(VK_UP))
-			window->Print("UP", x - 10, y - 20, RGB(255,255,255));
+			window->Print("UP", x-10, y-20, RGB(255,255,255));
 		if (input->KeyDown(VK_DOWN))
-			window->Print("DOWN", x - 20, y + 20, RGB(255,255,255));
+			window->Print("DOWN", x-25, y+20, RGB(255,255,255));
 
 		// teclar R
 		if (input->KeyPress('R'))
+		{
 			window->Clear();
+			window->Print("Teste de Captura de Teclas", x - 110, y - 150, RGB(255,255,255));
+		}
 	} 
 
 	// fim do programa

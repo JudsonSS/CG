@@ -39,8 +39,8 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	// leitura da entrada
 	Input* input = new Input();
 
-	MSG msg = { 0 };
 	// trata as mensagens destinadas a janela
+	MSG msg = { 0 };
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);

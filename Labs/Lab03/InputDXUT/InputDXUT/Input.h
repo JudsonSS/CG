@@ -24,8 +24,8 @@ class Input
 private:
 	static bool	 keys[256];				// estado das teclas do teclado/mouse
 	static bool  ctrl[256];				// controle da liberação de teclas
-	static int	 mouseX;					// posição do mouse eixo x
-	static int	 mouseY;					// posição do mouse eixo y
+	static int	 mouseX;			    // posição do mouse eixo x
+	static int	 mouseY;				// posição do mouse eixo y
 	static short mouseWheel;			// valor da roda do mouse
 
 	static const uint textLimit = 80;	// tamanho máximo do texto
