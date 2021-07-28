@@ -2,7 +2,7 @@
 // Input (Arquivo de Cabeçalho)
 //
 // Criação:		06 Jan 2020
-// Atualização:	04 Nov 2020
+// Atualização:	27 Jul 2020
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A classe Input concentra todas as tarefas relacionadas 
@@ -33,9 +33,9 @@ public:
 	Input();							// construtor
 	~Input();							// destrutor
 
-	bool KeyDown(int vkcode);			// verifica se uma tecla/botão está pressionado
-	bool KeyUp(int vkcode);				// verifica se uma tecla/botão está liberado
-	bool KeyPress(int vkcode);			// registra pressionamente somente após liberação
+	bool KeyDown(int vkcode);		    // retorna se tecla está pressionada
+	bool KeyUp(int vkcode);			    // retorna se tecla está liberada
+	bool KeyPress(int vkcode);		    // novo pressionamento somente após liberação
 
 	void Read();						// armazena texto digitado até o próximo ENTER ou TAB
 	static char* Text();				// retorna endereço do texto armazenada

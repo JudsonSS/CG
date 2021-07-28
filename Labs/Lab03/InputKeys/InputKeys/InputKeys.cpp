@@ -2,7 +2,7 @@
 // InputKeys (Código Fonte)
 //
 // Criação:		06 Jan 2020
-// Atualização:	04 Nov 2020
+// Atualização:	27 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa funcionalidades de leitura do teclado

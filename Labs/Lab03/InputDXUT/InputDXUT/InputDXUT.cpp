@@ -2,7 +2,7 @@
 // InputDXUT (Código Fonte)
 //
 // Criação:		06 Jan 2020
-// Atualização:	04 Nov 2020
+// Atualização:	27 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa as funcionalidades de leitura do mouse e teclado
@@ -57,19 +57,19 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 		// CTRL, ENTER, ESPAÇO
 		if (input->KeyDown(VK_CONTROL))
-			window->Print("CTRL", x - 120, y + 150, RGB(255, 255, 255));
+			window->Print("CTRL", x - 120, y + 150, RGB(255,255,255));
 		if (input->KeyDown(VK_RETURN))
-			window->Print("ENTER", x - 20, y + 150, RGB(255, 255, 255));
+			window->Print("ENTER", x - 20, y + 150, RGB(255,255,255));
 		if (input->KeyDown(VK_SPACE))
-			window->Print("SPACE", x + 80, y + 150, RGB(255, 255, 255));
+			window->Print("SPACE", x + 80, y + 150, RGB(255,255,255));
 
 		// setas de direção
 		if (input->KeyDown(VK_LEFT))
 			window->Print("LEFT", x - 40, y - 100, RGB(255,255,255));
 		if (input->KeyDown(VK_RIGHT))
-			window->Print("RIGHT", x, y - 100, RGB(255,255,255));
+			window->Print("RIGHT", x + 10, y - 100, RGB(255,255,255));
 		if (input->KeyDown(VK_UP))
-			window->Print("UP", x - 10, y - 120, RGB(255,255,255));
+			window->Print("UP", x - 5, y - 120, RGB(255,255,255));
 		if (input->KeyDown(VK_DOWN))
 			window->Print("DOWN", x - 20, y - 80, RGB(255,255,255));
 
@@ -85,43 +85,43 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		if (input->KeyDown(VK_LBUTTON))
 		{
 			window->Clear();
-			window->Print("BOTÃO ESQ", x - 38, y - 230, RGB(255, 255, 255));
-			window->Print(text.str().c_str(), x - 32, y - 210, RGB(255, 255, 255));
+			window->Print("BOTÃO ESQ", x - 32, y - 230, RGB(255,255,255));
+			window->Print(text.str().c_str(), x - 32, y - 210, RGB(255,255,255));
 		}
 		if (input->KeyDown(VK_MBUTTON))
 		{
 			window->Clear();
-			window->Print("BOTÃO MEIO", x - 38, y - 230, RGB(255, 255, 255));
-			window->Print(text.str().c_str(), x - 32, y - 210, RGB(255, 255, 255));
+			window->Print("BOTÃO MEIO", x - 32, y - 230, RGB(255,255,255));
+			window->Print(text.str().c_str(), x - 32, y - 210, RGB(255,255,255));
 		}
 		if (input->KeyDown(VK_RBUTTON))
 		{
 			window->Clear();
-			window->Print("BOTÃO DIR", x - 38, y - 230, RGB(255, 255, 255));
-			window->Print(text.str().c_str(), x - 32, y - 210, RGB(255, 255, 255));
+			window->Print("BOTÃO DIR", x - 32, y - 230, RGB(255,255,255));
+			window->Print(text.str().c_str(), x - 32, y - 210, RGB(255,255,255));
 		}
 
 		// roda do mouse
 		if (short rotation = input->MouseWheel(); rotation != 0)
 		{
 			window->Clear();
-			window->Print("ROLAGEM", x - 38, y - 250, RGB(255, 255, 255));
+			window->Print("ROLAGEM", x - 32, y - 250, RGB(255,255,255));
 
 			if (rotation > 0)
-				window->Print("PARA FRENTE", x - 38, y - 230, RGB(255, 255, 255));
+				window->Print("PARA FRENTE", x - 32, y - 230, RGB(255,255,255));
 			else
-				window->Print("PARA TRÁS", x - 38, y - 230, RGB(255, 255, 255));
+				window->Print("PARA TRÁS", x - 32, y - 230, RGB(255,255,255));
 			
 			text.str("");
 			text << rotation;
-			window->Print(text.str().c_str(), x - 38, y - 210, RGB(255, 255, 255));
+			window->Print(text.str().c_str(), x - 32, y - 210, RGB(255,255,255));
 		}
 
 		// inicia entrada de texto
 		if (input->KeyPress(VK_INSERT))
 			input->Read();
 
-		window->Print(Input::Text(), x - 120, y, RGB(255, 255, 255));
+		window->Print(Input::Text(), x - 120, y, RGB(255,255,255));
 	} 
 
 	// fim do programa

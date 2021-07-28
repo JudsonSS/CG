@@ -2,7 +2,7 @@
 // Window (Arquivo de Cabeçalho)
 // 
 // Criação:		04 Jan 2020
-// Atualização:	11 Jan 2020
+// Atualização:	27 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Abstrai os detalhes de configuração de uma janela 
@@ -33,47 +33,47 @@ enum WindowModes {FULLSCREEN, WINDOWED};
 class Window
 {
 private:
-	HWND		windowId;									// identificador da janela
-	int			windowWidth;								// largura da janela
-	int			windowHeight;								// altura da janela
-	HICON		windowIcon;									// ícone da janela
-	HCURSOR		windowCursor;								// cursor da janela
-	COLORREF	windowColor;								// cor de fundo da janela
-	string		windowTitle;								// nome da barra de título
-	DWORD		windowStyle;								// estilo da janela 
-	int			windowMode;									// modo tela cheia, em janela ou sem borda
-	int			windowPosX;									// posição inicial da janela no eixo x
-	int			windowPosY;									// posição inicial da janela no eixo y
-	int			windowCenterX;								// centro da janela no eixo x
-	int			windowCenterY;								// centro da janela no eixo y
-	
+    HWND     windowId;                                      // identificador da janela
+    int	     windowWidth;                                   // largura da janela
+    int	     windowHeight;                                  // altura da janela
+    HICON    windowIcon;                                    // ícone da janela
+    HCURSOR  windowCursor;                                  // cursor da janela
+    COLORREF windowColor;                                   // cor de fundo da janela
+    string   windowTitle;                                   // nome da barra de título
+    DWORD    windowStyle;                                   // estilo da janela 
+    int	     windowMode;                                    // modo tela cheia, em janela ou sem borda
+    int	     windowPosX;                                    // posição inicial da janela no eixo x
+    int	     windowPosY;                                    // posição inicial da janela no eixo y
+    int	     windowCenterX;                                 // centro da janela no eixo x
+    int	     windowCenterY;                                 // centro da janela no eixo y
+    
 public:
-	Window();												// construtor
+    Window();                                               // construtor
 
-	HWND Id();												// retorna o identificador da janela
-	int Width(); 											// retorna a largura atual da janela
-	int Height(); 											// retorna a altura atual da janela
-	int Mode() const; 										// retorna o modo atual da janela (FULLSCREEN/WINDOWED)
-	int CenterX() const;									// retorna o centro da janela no eixo x
-	int CenterY() const;									// retorna o centro da janela no eixo y
-	string Title() const;									// retorna título da janela
-	COLORREF Color();										// retorna a cor de fundo da janela
+    HWND Id();                                              // retorna o identificador da janela
+    int Width();                                            // retorna a largura atual da janela
+    int Height();                                           // retorna a altura atual da janela
+    int Mode() const;                                       // retorna o modo atual da janela (FULLSCREEN/WINDOWED)
+    int CenterX() const;                                    // retorna o centro da janela no eixo x
+    int CenterY() const;                                    // retorna o centro da janela no eixo y
+    string Title() const;                                   // retorna título da janela
+    COLORREF Color();                                       // retorna a cor de fundo da janela
 
-	void Icon(const uint icon);								// define o ícone da janela
-	void Cursor(const uint cursor);							// define o cursor da janela
-	void Title(const string title);							// define o título da janela 
-	void Size(int width, int height);						// define o tamanho (largura e altura) da janela
-	void Mode(int mode);									// define o modo da janela (FULLSCREEN/WINDOWED)
-	void Color(int r, int g, int b);						// define a cor de fundo da janela
+    void Icon(const uint icon);                             // define o ícone da janela
+    void Cursor(const uint cursor);                         // define o cursor da janela
+    void Title(const string title);                         // define o título da janela 
+    void Size(int width, int height);                       // define o tamanho (largura e altura) da janela
+    void Mode(int mode);                                    // define o modo da janela (FULLSCREEN/WINDOWED)
+    void Color(int r, int g, int b);                        // define a cor de fundo da janela
 
-	void HideCursor(bool hide);								// habilita ou desabilita a exbição do cursor
-	void Print(string text, int x, int y, COLORREF color);	// mostra texto na janela	
-	void Close();											// fecha a janela e sai do jogo
-	void Clear();											// limpa a área cliente
-	bool Create();											// cria a janela com os valores dos atributos
+    void HideCursor(bool hide);                             // habilita ou desabilita a exbição do cursor
+    void Print(string text, int x, int y, COLORREF color);  // mostra texto na janela	
+    void Close();                                           // fecha a janela e sai do jogo
+    void Clear();                                           // limpa a área cliente
+    bool Create();                                          // cria a janela com os valores dos atributos
 
-	// trata eventos do Windows
-	static LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+    // trata eventos do Windows
+    static LRESULT CALLBACK WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 };
 
 // ---------------------------------------------------------------------------------

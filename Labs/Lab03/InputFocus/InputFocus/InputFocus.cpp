@@ -2,7 +2,7 @@
 // InputFocus (Código Fonte)
 //
 // Criação:		06 Jan 2020
-// Atualização:	04 Nov 2020
+// Atualização:	27 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa entrada de dados com a mudança de foco da janela
@@ -40,10 +40,6 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	Input* input = new Input();
 
 	MSG msg = { 0 };
-	
-	int x = window->CenterX();
-	int y = window->CenterY();
-
 	// trata as mensagens destinadas a janela
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
@@ -65,13 +61,13 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 void Welcome()
 {
 	window->Clear();
-	window->Print("De volta?", 485, 300, RGB(255, 255, 255));
+	window->Print("De volta?", 485, 300, RGB(255,255,255));
 }
 
 void Bye()
 {
 	window->Clear();
-	window->Print("Até Logo!", 485, 300, RGB(255, 255, 255));
+	window->Print("Até Logo!", 485, 300, RGB(255,255,255));
 }
 
 // ----------------------------------------------------------------------------

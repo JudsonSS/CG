@@ -2,7 +2,7 @@
 // InputText (Código Fonte)
 //
 // Criação:		06 Jan 2020
-// Atualização:	04 Nov 2020
+// Atualização:	27 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa captura de caracteres com a mensagem WM_CHAR
@@ -30,12 +30,8 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	// leitura da entrada
 	Input* input = new Input();
 
-	MSG msg = { 0 };
-	
-	int x = window->CenterX();
-	int y = window->CenterY();
-
 	// trata as mensagens destinadas a janela
+	MSG msg = { 0 };	
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
@@ -47,7 +43,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		if (input->KeyPress(VK_INSERT))
 			input->Read();
 
-		window->Print(Input::Text(), x - 120, y, RGB(255, 255, 255));
+		window->Print(Input::Text(), 390, 300, RGB(255,255,255));
 	} 
 
 	// fim do programa
