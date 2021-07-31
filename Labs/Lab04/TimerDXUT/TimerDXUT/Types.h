@@ -2,7 +2,7 @@
 // Types (Arquivo de Cabeçalho)
 // 
 // Criação:		02 Abr 2011
-// Atualização:	17 Jan 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Isola os tipos específicos da plataforma fornecendo 
@@ -14,11 +14,11 @@
 #define DXUT_TYPES_H
 
 // atalhos para tipos da linguagem C++
-using uchar = unsigned char;
+using uchar  = unsigned char;
 using ushort = unsigned short;
-using ulong = unsigned long;
-using llong = long long;
+using ulong  = unsigned long;
+using llong  = long long;
 using ullong = unsigned long long;
-using uint = unsigned int;
+using uint   = unsigned int;
 
 #endif

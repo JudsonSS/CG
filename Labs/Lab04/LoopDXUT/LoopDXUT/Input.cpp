@@ -2,7 +2,7 @@
 // Input (Código Fonte)
 //
 // Criação:		06 Jan 2020
-// Atualização:	19 Nov 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A classe Input concentra todas as tarefas relacionadas
@@ -15,14 +15,13 @@
 // -------------------------------------------------------------------------------
 // inicialização de membros estáticos da classe
 
-bool  Input::keys[256] = { 0 };						// estado do teclado/mouse
-bool  Input::ctrl[256] = { 0 };						// controle de liberação das teclas
-int	  Input::mouseX = 0;							// posição do mouse no eixo x
-int	  Input::mouseY = 0;							// posição do mouse no eixo y
-short Input::mouseWheel = 0;						// valor da roda do mouse
+bool Input::keys[256] = { 0 };							// estado do teclado/mouse
+bool Input::ctrl[256] = { 0 };							// controle de liberação das teclas
+string Input::text; 									// guarda caracteres digitados
 
-uint Input::textIndex = 0;							// posição atual de inserção em "text"
-char Input::text[textLimit] = { 0 };				// guarda caracteres digitados
+int	  Input::mouseX = 0;								// posição do mouse no eixo x
+int	  Input::mouseY = 0;								// posição do mouse no eixo y
+short Input::mouseWheel = 0;							// valor da roda do mouse
 									
 // -------------------------------------------------------------------------------
 
@@ -75,8 +74,7 @@ short Input::MouseWheel()
 void Input::Read()
 {
 	// apaga texto armazenado
-	textIndex = 0;
-	ZeroMemory(text, textLimit);
+	text.clear();
 
 	// altera a window procedure da janela ativa
 	SetWindowLongPtr(GetActiveWindow(), GWLP_WNDPROC, (LONG_PTR)Input::Reader);
@@ -86,34 +84,30 @@ void Input::Read()
 
 LRESULT CALLBACK Input::Reader(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	switch (msg)
-	{
 	// processa teclas de caracteres
-	case WM_CHAR:
+	if (msg == WM_CHAR)
+	{
 		switch (wParam)
 		{
-		// Backspace
+			// Backspace
 		case 0x08:
-			if (textIndex > 0)
-			{
-				textIndex--;
-				text[textIndex] = '\0';
-			}
+			if (!text.empty())
+				text.erase(text.size() - 1);
 			break;
 
-		// Tab e Enter
+			// Tab e Enter
 		case 0x09:
 		case 0x0D:
 			// altera a window procedure da janela ativa
 			SetWindowLongPtr(GetActiveWindow(), GWLP_WNDPROC, (LONG_PTR)Input::InputProc);
 			break;
 
-		// Caracteres
+			// Caracteres
 		default:
-			if (textIndex < textLimit)
-				text[textIndex++] = char(wParam);
+			text += char(wParam);
 			break;
 		}
+
 		// ATENÇÃO: não será necessário quando estiver operando com DirectX
 		InvalidateRect(hWnd, NULL, TRUE);
 		return 0;

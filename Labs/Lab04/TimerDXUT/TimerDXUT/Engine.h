@@ -2,7 +2,7 @@
 // Engine (Arquivo de Cabeçalho)
 //
 // Criação:		15 Mai 2014
-// Atualização:	17 Jan 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A Engine roda aplicações criadas a partir da classe App. 

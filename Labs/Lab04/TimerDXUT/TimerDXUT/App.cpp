@@ -2,7 +2,7 @@
 // App (Código Fonte)
 //
 // Criação:		11 Jan 2020
-// Atualização:	15 Jan 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Uma classe abstrata para representar uma aplicação

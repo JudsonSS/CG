@@ -2,7 +2,7 @@
 // Window (Código Fonte)
 // 
 // Criação:		19 Mai 2007
-// Atualização:	17 Jan 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Abstrai os detalhes de configuração de uma janela
@@ -78,8 +78,8 @@ void Window::Size(int width, int height)
 	windowCenterY = windowHeight/2;
 
 	// ajusta a posição da janela para o centro da tela
-	windowPosX = (GetSystemMetrics(SM_CXSCREEN)/2) - (windowWidth/2);
-	windowPosY = (GetSystemMetrics(SM_CYSCREEN)/2) - (windowHeight/2);
+	windowPosX = GetSystemMetrics(SM_CXSCREEN)/2 - windowWidth/2;
+	windowPosY = GetSystemMetrics(SM_CYSCREEN)/2 - windowHeight/2;
 }
 
 // -------------------------------------------------------------------------------

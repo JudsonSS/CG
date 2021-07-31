@@ -2,7 +2,7 @@
 // DXUT (Arquivo de Cabeçalho)
 //
 // Criação:		04 Jan 2020
-// Atualização:	11 Jan 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Arquivo mestre para o DirectX Utility Toolkit (DXUT)

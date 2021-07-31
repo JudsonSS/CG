@@ -2,7 +2,7 @@
 // TimerDXUT (Código Fonte)
 //
 // Criação:		16 Jan 2020
-// Atualização:	19 Nov 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa as funcionalidades de animação do motor DXUT
@@ -56,10 +56,8 @@ void WinApp::Finalize()
 //                                  WinMain                                      
 // ------------------------------------------------------------------------------
 
-int APIENTRY WinMain(_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPSTR lpCmdLine,
-	_In_ int nCmdShow)
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
+	                 _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	// cria motor e configura a janela
 	Engine* engine = new Engine();

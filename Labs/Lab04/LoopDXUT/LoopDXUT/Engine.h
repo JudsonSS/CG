@@ -2,7 +2,7 @@
 // Engine (Arquivo de Cabeçalho)
 //
 // Criação:		11 Jan 2020
-// Atualização:	15 Jan 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A Engine roda aplicações criadas a partir da classe App. 
@@ -26,11 +26,11 @@ class Engine
 {
 private:
 	static App * app;					// aplicação a ser executada
-	int Loop();							// inicia laço principal do motor
+	int Loop();							// laço principal do motor
 
 public:
 	static Window* window;				// janela da aplicação
-	static Input* input;				// entrada da aplicação
+	static Input* input;				// dispositivos de entrada da aplicação
 
 	Engine();							// construtor
 	~Engine();							// destrutor

@@ -2,7 +2,7 @@
 // LoopDXUT (Código Fonte)
 //
 // Criação:		11 Jan 2020
-// Atualização:	19 Nov 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa a execução de uma aplicação em um laço de tempo-real
@@ -74,8 +74,8 @@ void WinApp::Display()
 {
 	window->Print("Window App Demo", 10, 10, RGB(255, 255, 255));
 	window->Print(textSize.str(), 10, 50, RGB(255, 255, 255));
-	window->Print(textMode.str(), 10, 70, RGB(255, 255, 255));
-	window->Print(textMouse.str(), 10, 90, RGB(255, 255, 255));
+	window->Print(textMode.str(), 10, 75, RGB(255, 255, 255));
+	window->Print(textMouse.str(), 10, 100, RGB(255, 255, 255));
 }
 
 // ------------------------------------------------------------------------------
@@ -89,10 +89,8 @@ void WinApp::Finalize()
 //                                  WinMain                                      
 // ------------------------------------------------------------------------------
 
-int APIENTRY WinMain(_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPSTR lpCmdLine,
-	_In_ int nCmdShow)
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
+	                 _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	// cria motor e configura a janela
 	Engine* engine = new Engine();

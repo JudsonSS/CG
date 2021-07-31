@@ -2,7 +2,7 @@
 // Window (Arquivo de Cabeçalho)
 // 
 // Criação:		19 Mai 2007
-// Atualização:	17 Jan 2020
+// Atualização:	31 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Abstrai os detalhes de configuração de uma janela 
