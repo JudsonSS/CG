@@ -2,7 +2,7 @@
 // LoopDXUT (Código Fonte)
 //
 // Criação:		11 Jan 2020
-// Atualização:	31 Jul 2021
+// Atualização:	02 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Testa a execução de uma aplicação em um laço de tempo-real
@@ -35,13 +35,14 @@ public:
 
 void WinApp::Init()
 {
-	// captura tamanho e tipo de janela
-	textSize << "Tamanho: " << window->Width() << " x " << window->Height();
-	textMode << "Formato: " << (window->Mode() == WINDOWED ? "Em Janela" : "Tela Cheia");
-	
 	// captura posição do mouse
 	lastX = input->MouseX();
 	lastY = input->MouseY();
+
+	// captura tamanho e tipo de janela
+	textSize << "Tamanho: " << window->Width() << " x " << window->Height();
+	textMode << "Formato: " << (window->Mode() == WINDOWED ? "Em Janela" : "Tela Cheia");
+	textMouse << input->MouseX() << " x " << input->MouseY();
 }
 
 // ------------------------------------------------------------------------------

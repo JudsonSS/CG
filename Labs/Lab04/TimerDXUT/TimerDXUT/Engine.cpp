@@ -37,12 +37,7 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-	if (app)
-		delete app;
-
-	// volta a usar a Window Procedure da classe Input
-	SetWindowLongPtr(window->Id(), GWLP_WNDPROC, (LONG_PTR)Input::InputProc);
-
+	delete app;
 	delete input;
 	delete window;
 }
@@ -100,7 +95,7 @@ int Engine::Loop()
 			app->Draw();
 
 			// aguarda 16 milissegundos ou a próxima interação com a janela
-			MsgWaitForMultipleObjects(0, NULL, FALSE, 16, QS_ALLINPUT);
+			MsgWaitForMultipleObjects(0, NULL, FALSE, 10, QS_ALLINPUT);
 		}
 
 	} while (msg.message != WM_QUIT);
@@ -162,21 +157,9 @@ float Engine::FrameTime()
 
 LRESULT CALLBACK Engine::EngineProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	HDC         hdc;      // representa o dispositivo gráfico
-	PAINTSTRUCT ps;       // guarda região invalidada da janela
-
-	switch (msg)
-	{
 	// janela precisa ser repintada
-	case WM_PAINT:
-		// sinaliza	para a janela que a pintura foi feita
-		hdc = BeginPaint(hWnd, &ps);
-		EndPaint(hWnd, &ps);
-
-		// chama a função de exibição da aplicação
+	if (msg == WM_PAINT)
 		app->Display();
-		return 0;
-	}
 
 	return CallWindowProc(Input::InputProc, hWnd, msg, wParam, lParam);
 }
