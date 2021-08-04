@@ -2,7 +2,7 @@
 // Timer (Código Fonte)
 // 
 // Criação:		02 Abr 2011
-// Atualização:	01 Fev 2020
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Usa um contador de alta precisão para medir o tempo

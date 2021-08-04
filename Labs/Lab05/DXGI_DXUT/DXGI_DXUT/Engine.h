@@ -2,7 +2,7 @@
 // Engine (Arquivo de Cabeçalho)
 //
 // Criação:		15 Mai 2014
-// Atualização:	22 Jan 2020
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A Engine roda aplicações criadas a partir da classe App. 
@@ -28,26 +28,26 @@
 class Engine
 {
 private:
-	static Timer timer;					// medidor de tempo
-	static bool  paused;				// estado do aplicação
+	static Timer timer;                 // medidor de tempo
+	static bool paused;                 // estado do aplicação
 
-	double FrameTime();					// calcula o tempo do quadro
-	int Loop();							// inicia laço principal do motor
+	double FrameTime();                 // calcula o tempo do quadro
+	int Loop();                         // inicia laço principal do motor
 
 public:
-	static Graphics* graphics;			// dispositivo gráfico
-	static Window*   window;			// janela da aplicação
-	static Input*    input;				// entrada da aplicação
-	static App*      app;				// aplicação a ser executada
-	static double    frameTime;			// tempo do quadro atual
+	static Graphics* graphics;          // dispositivo gráfico
+	static Window* window;              // janela da aplicação
+	static Input* input;                // entrada da aplicação
+	static App* app;                    // aplicação a ser executada
+	static double frameTime;            // tempo do quadro atual
 
-	Engine();							// construtor
-	~Engine();							// destrutor
+	Engine();                           // construtor
+	~Engine();                          // destrutor
 
-	int Start(App * application);		// inicia o execução da aplicação
+	int Start(App * application);       // inicia o execução da aplicação
 	
-	static void Pause();				// pausa o motor
-	static void Resume();				// reinicia o motor
+	static void Pause();                // pausa o motor
+	static void Resume();               // reinicia o motor
 
 	// trata eventos do Windows
 	static LRESULT CALLBACK EngineProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);

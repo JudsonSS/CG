@@ -2,7 +2,7 @@
 // Engine (Código Fonte)
 //
 // Criação:		15 Mai 2014
-// Atualização:	22 Jan 2020
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A Engine roda aplicações criadas a partir da classe App.
@@ -40,9 +40,6 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-	// volta a usar a Window Procedure da classe Input
-	SetWindowLongPtr(window->Id(), GWLP_WNDPROC, (LONG_PTR)Input::InputProc);
-
 	delete app;
 	delete graphics;
 	delete input;
@@ -152,7 +149,7 @@ int Engine::Loop()
 			// Pausa/Resume Jogo
 			// -----------------------------------------------
 
-			if (input->KeyPress('P'))
+			if (input->KeyPress(VK_PAUSE))
 			{
 				if (paused)
 					Resume();
@@ -192,22 +189,10 @@ int Engine::Loop()
 
 LRESULT CALLBACK Engine::EngineProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	HDC         hdc;      // representa o dispositivo gráfico
-	PAINTSTRUCT ps;       // guarda região invalidada da janela
-
-	switch (msg)
-	{
 	// janela precisa ser repintada
-	case WM_PAINT:
-		// sinaliza	para a janela que a pintura foi feita
-		hdc = BeginPaint(hWnd, &ps);
-		EndPaint(hWnd, &ps);
-
-		// chama a função de exibição da aplicação
+	if (msg == WM_PAINT)
 		app->Display();
-		return 0;
-	}
-
+		
 	return CallWindowProc(Input::InputProc, hWnd, msg, wParam, lParam);
 }
 

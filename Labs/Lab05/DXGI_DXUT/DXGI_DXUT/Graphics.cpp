@@ -2,7 +2,7 @@
 // Graphics (Código Fonte)
 // 
 // Criação:		06 Abr 2011
-// Atualização:	02 Fev 2020
+// Atualização: 04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Usa funções do Direct3D 12 para acessar a GPU
@@ -156,53 +156,22 @@ void Graphics::LogHardwareInfo()
 	// Modo de vídeo (resolução)
 	// ------------------------------------------
 
-	uint numModes = 0;
+	// pega as dimensões da tela
+	uint dpi = GetDpiForSystem();
+	uint screenWidth = GetSystemMetricsForDpi(SM_CXSCREEN, dpi);
+	uint screenHeight = GetSystemMetricsForDpi(SM_CYSCREEN, dpi);
 
-	// pega quantidade de modos de vídeo suportados
-	output->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, 0, &numModes, nullptr);
+	// pega a frequencia de atualização da tela
+	DEVMODE devMode = { 0 };
+	devMode.dmSize = sizeof(DEVMODE);
+	EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &devMode);
+	uint refresh = devMode.dmDisplayFrequency;
 
-	// se algum modo de vídeo for suportado
-	if (numModes > 0)
-	{
-		// armazena modos de vídeo em um vetor
-		DXGI_MODE_DESC* modeList = new DXGI_MODE_DESC[numModes];
-		output->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, 0, &numModes, modeList);
-
-		// pega as dimensões da tela
-		uint dpi = GetDpiForSystem();
-		uint screenWidth = GetSystemMetricsForDpi(SM_CXSCREEN, dpi);
-		uint screenHeight = GetSystemMetricsForDpi(SM_CYSCREEN, dpi);
-
-		// pega a frequencia de atualização da tela
-		DEVMODE devMode = { 0 };
-		devMode.dmSize = sizeof(DEVMODE);
-		EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &devMode);
-		uint refresh = devMode.dmDisplayFrequency;
-
-		// numerador e denominador da taxa de atualização do monitor
-		uint num = 60;
-		uint den = 1;
-		
-		// atualiza numerador e denominador com os valores de um modo de vídeo compatível com as dimensões da tela
-		for (uint i = 0; i < numModes; ++i)
-		{
-			if ((modeList[i].Width == screenWidth) && (modeList[i].Height == screenHeight))
-			{
-				num = modeList[i].RefreshRate.Numerator;
-				den = modeList[i].RefreshRate.Denominator;
-				
-				if (num / den == refresh)
-				{
-					wstringstream text;
-					text << L"---> Resolução: " << screenWidth << L"x" << screenHeight << L" " << refresh << L" Hz\n";
-					OutputDebugStringW(text.str().c_str());
-				}
-			}
-		}
-
-		// libera vetor com modos de vídeo
-		delete[] modeList;
-	}
+	wstringstream text;
+	text << L"---> Resolução: " << screenWidth << L"x" << screenHeight << L" " << refresh << L" Hz\n";
+	OutputDebugStringW(text.str().c_str());
+	
+	// ------------------------------------------
 
 	// libera interfaces DXGI utilizadas
 	if (adapter) adapter->Release();

@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Error (Código Fonte)
 //
-// Criação:		25 Jan 2020
-// Atualização:	29 Jan 2020
-// Compilador:	Visual C++ 2019
+// Criação:     25 Jan 2020
+// Atualização: 04 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Uma classe para tratamento de erros
+// Descrição:   Uma classe para tratamento de erros
 //
 **********************************************************************************/
 
@@ -16,23 +16,25 @@ using std::stringstream;        // habilita o uso sem o prefixo std::
 
 // -------------------------------------------------------------------------------
 
-Error::Error() : code(S_OK), line(-1)
+Error::Error() 
+    : hres_code(S_OK), line_num(-1)
 {
+    // nomes da função e do arquivo vazios
 }
 
 // -------------------------------------------------------------------------------
 
-Error::Error(HRESULT hr, const string& funcName, const string& fileName, int lineNum) 
-    : code(hr), function(funcName), line(lineNum)
+Error::Error(HRESULT hr, const string & func, const string & file, int line) 
+    : hres_code(hr), func_name(func), line_num(line)
 {
     // posição da última barra no nome do arquivo
-    size_t pos = fileName.find_last_of('\\');
+    size_t pos = file.find_last_of('\\');
 
     // se a barra foi encontrada
     if (pos != string::npos)
     {
         // guarda apenas nome do arquivo e não o caminho completo
-        file = fileName.substr(pos + 1);
+        file_name = file.substr(pos + 1);
     }
 }
 
@@ -41,12 +43,12 @@ Error::Error(HRESULT hr, const string& funcName, const string& fileName, int lin
 string Error::ToString() const
 {
     // pega a descrição do código de erro COM em formato string
-    _com_error err(code);
+    _com_error err(hres_code);
     
     stringstream text;
-    text << function 
-         << " falhou em " << file 
-         << ", linha " << std::to_string(line)
+    text << func_name 
+         << " falhou em " << file_name 
+         << ", linha " << std::to_string(line_num)
          << ":\n" << err.ErrorMessage();
 
     return text.str();
