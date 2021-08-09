@@ -19,7 +19,7 @@ using std::wstringstream;
 Graphics::Graphics()
 {
     // configuração
-    backBufferCount = 3;    // triple-buffering
+    backBufferCount = 2;    // double-buffering
     backBufferIndex = 0;    // zero é o primeiro
     antialiasing = 1;       // sem antialiasing
     quality = 0;            // qualidade padrão

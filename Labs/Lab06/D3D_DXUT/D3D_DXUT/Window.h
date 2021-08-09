@@ -2,7 +2,7 @@
 // Window (Arquivo de Cabeçalho)
 // 
 // Criação:     19 Mai 2007
-// Atualização: 07 Ago 2021
+// Atualização: 09 Ago 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Abstrai os detalhes de configuração de uma janela 
@@ -73,7 +73,6 @@ public:
     void Color(int r, int g, int b);                        // define a cor de fundo da janela
 
     void HideCursor(bool hide);                             // habilita ou desabilita a exbição do cursor
-    void Print(string text, int x, int y, COLORREF color);  // mostra texto na janela    
     void Close();                                           // fecha a janela e sai do jogo
     void Clear();                                           // limpa a área cliente
     bool Create();                                          // cria a janela com os valores dos atributos

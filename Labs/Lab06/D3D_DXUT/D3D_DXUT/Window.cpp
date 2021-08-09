@@ -2,7 +2,7 @@
 // Window (Código Fonte)
 // 
 // Criação:     19 Mai 2007
-// Atualização: 07 Ago 2021
+// Atualização: 09 Ago 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Abstrai os detalhes de configuração de uma janela
@@ -60,7 +60,7 @@ void Window::Mode(int mode)
     }
     else
     {
-        // modo em tela cheia (sem bordas)
+        // modo em tela cheia / janela sem bordas
         windowStyle = WS_EX_TOPMOST | WS_POPUP | WS_VISIBLE; 
     } 
 }
@@ -80,23 +80,6 @@ void Window::Size(int width, int height)
     // ajusta a posição da janela para o centro da tela
     windowPosX = (GetSystemMetrics(SM_CXSCREEN)/2) - (windowWidth/2);
     windowPosY = (GetSystemMetrics(SM_CYSCREEN)/2) - (windowHeight/2);
-}
-
-// -------------------------------------------------------------------------------
-
-void Window::Print(string text, int x, int y, COLORREF color)
-{
-    // esta função exibe o texto na posição (x,y) da tela usando a cor especificada
-    // ela usa a GDI do Windows (lenta) e deve ser usada apenas para depuração
-
-    // define a cor do texto
-    SetTextColor(windowHdc, color);
-
-    // define o fundo do texto como transparente
-    SetBkMode(windowHdc, TRANSPARENT);
-
-    // mostra o texto
-    TextOut(windowHdc, x, y, text.c_str(), (int)text.size());
 }
 
 // -------------------------------------------------------------------------------
