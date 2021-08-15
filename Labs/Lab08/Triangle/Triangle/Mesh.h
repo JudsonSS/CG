@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Mesh (Arquivo de Cabeçalho)
 //
-// Criação:		28 Abr 2016
-// Atualização:	26 Jul 2020
-// Compilador:	Visual C++ 19
+// Criação:     28 Abr 2016
+// Atualização: 15 Ago 2021
+// Compilador:  Visual C++ 19
 //
-// Descrição:	Representa uma malha 3D em Direct3D 12
+// Descrição:   Representa uma malha 3D em Direct3D 12
 //
 **********************************************************************************/
 
@@ -23,30 +23,34 @@ using std::string;
 
 struct Mesh
 {
-	// identificador para recuperar a malha pelo seu nome
-	string Id;
+    // identificador para recuperar a malha pelo seu nome
+    string id;
 
-	// um Blob é usado para guardar dados de um tipo qualquer
-	// o cliente deve fazer o cast apropriado a partir do Blob
-	
-	// buffers na CPU
-	ID3DBlob* VertexBufferCPU;
+    // um Blob é usado para guardar dados de um tipo qualquer
+    // o cliente deve fazer o cast apropriado a partir do Blob
+    
+    // buffers na CPU
+    ID3DBlob* vertexBufferCPU;
 
-	// buffers de Upload CPU -> GPU
-	ID3D12Resource* VertexBufferUpload;
+    // buffers de Upload CPU -> GPU
+    ID3D12Resource* vertexBufferUpload;
 
-	// buffers na GPU
-	ID3D12Resource* VertexBufferGPU;
+    // buffers na GPU
+    ID3D12Resource* vertexBufferGPU;
 
-	// características dos vertex buffers
-	uint VertexByteStride;
-	uint VertexBufferSize;
+    // descritor do vertex buffer
+    D3D12_VERTEX_BUFFER_VIEW vertexBufferView;
 
-	Mesh(string Name);
-	~Mesh();
+    // características dos vertex buffers
+    uint vertexByteStride;
+    uint vertexBufferSize;
 
-	D3D12_VERTEX_BUFFER_VIEW VertexBufferView() const;
+    // construtor e destrutor
+    Mesh(string name);
+    ~Mesh();
 
+    // retorna descritor (view) do Vertex Buffer
+    D3D12_VERTEX_BUFFER_VIEW * VertexBufferView();
 };
 
 // -------------------------------------------------------------------------------

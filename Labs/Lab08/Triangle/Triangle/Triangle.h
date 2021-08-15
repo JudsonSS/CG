@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Triangle (Arquivo de Cabeçalho)
 //
-// Criação:		22 Jul 2020
-// Atualização:	03 Ago 2020
-// Compilador:	Visual C++ 2019
+// Criação:     22 Jul 2020
+// Atualização: 14 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Constrói um Triângulo usando o Direct3D 12
+// Descrição:   Constrói um Triângulo usando o Direct3D 12
 //
 **********************************************************************************/
 
@@ -22,8 +22,8 @@ using namespace DirectX;
 
 struct Vertex
 {
-	XMFLOAT3 Pos;
-	XMFLOAT4 Color;
+    XMFLOAT3 Pos;
+    XMFLOAT4 Color;
 };
 
 // ------------------------------------------------------------------------------
@@ -31,21 +31,19 @@ struct Vertex
 class Triangle : public App
 {
 private:
-	ID3DBlob* vertexShader;
-	ID3DBlob* pixelShader;
-	ID3D12RootSignature* rootSignature;
-	ID3D12PipelineState* pipelineState;
-	Mesh* geometry;
+    ID3D12RootSignature* rootSignature;
+    ID3D12PipelineState* pipelineState;
+    Mesh* geometry;
 
 public:
-	void Init();
-	void Update();
-	void Display();
-	void Finalize();
+    void Init();
+    void Update();
+    void Display();
+    void Finalize();
 
-	void BuildGeometry();
-	void BuildRootSignature();
-	void BuildPipelineState();	
+    void BuildGeometry();
+    void BuildRootSignature();
+    void BuildPipelineState();    
 };
 
 // ------------------------------------------------------------------------------
