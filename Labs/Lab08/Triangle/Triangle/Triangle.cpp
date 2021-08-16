@@ -243,7 +243,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance,
         // cria motor e configura a janela
         Engine* engine = new Engine();
         engine->window->Mode(WINDOWED);
-        engine->window->Size(1024, 600);
+        engine->window->Size(600, 600);
         engine->window->Color(0, 122, 204);
         engine->window->Title("Triangle");
         engine->window->Icon(IDI_ICON);

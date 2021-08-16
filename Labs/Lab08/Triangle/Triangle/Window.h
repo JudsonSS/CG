@@ -2,7 +2,7 @@
 // Window (Arquivo de Cabeçalho)
 // 
 // Criação:     19 Mai 2007
-// Atualização: 09 Ago 2021
+// Atualização: 15 Ago 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Abstrai os detalhes de configuração de uma janela 
@@ -64,6 +64,7 @@ public:
     int CenterY() const;                                    // retorna o centro da janela no eixo y
     string Title() const;                                   // retorna título da janela
     COLORREF Color();                                       // retorna a cor de fundo da janela
+    float AspectRatio() const;                              // retorna o aspect ratio da janela
 
     void Icon(const uint icon);                             // define o ícone da janela
     void Cursor(const uint cursor);                         // define o cursor da janela
@@ -119,6 +120,10 @@ inline string Window::Title() const
 // retorna a cor de fundo da janela
 inline COLORREF Window::Color()
 { return windowColor; }
+
+// retorna o aspect ratio da janela
+inline float Window::AspectRatio() const
+{ return windowWidth / float(windowHeight); }
 
 // ----------------------------------------------------------
 
