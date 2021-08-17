@@ -120,34 +120,58 @@ LRESULT CALLBACK Input::InputProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPa
 {
     switch (msg)
     {
-    // tecla pressionada
+        // tecla pressionada
     case WM_KEYDOWN:
-    case WM_LBUTTONDOWN:
-    case WM_LBUTTONDBLCLK:
-    case WM_MBUTTONDOWN:
-    case WM_MBUTTONDBLCLK:
-    case WM_RBUTTONDOWN:
-    case WM_RBUTTONDBLCLK:
         keys[wParam] = true;
         return 0;
 
-    // tecla liberada
+        // tecla liberada
     case WM_KEYUP:
-    case WM_LBUTTONUP:
-    case WM_MBUTTONUP:
-    case WM_RBUTTONUP:
         keys[wParam] = false;
         return 0;
-        
-    // movimento do mouse
-    case WM_MOUSEMOVE:            
+
+        // movimento do mouse
+    case WM_MOUSEMOVE:
         mouseX = GET_X_LPARAM(lParam);
         mouseY = GET_Y_LPARAM(lParam);
         return 0;
 
-    // movimento da roda do mouse
+        // movimento da roda do mouse
     case WM_MOUSEWHEEL:
         mouseWheel = GET_WHEEL_DELTA_WPARAM(wParam);
+        return 0;
+
+        // botão esquerdo do mouse pressionado
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONDBLCLK:
+        keys[VK_LBUTTON] = true;
+        return 0;
+
+        // botão do meio do mouse pressionado
+    case WM_MBUTTONDOWN:
+    case WM_MBUTTONDBLCLK:
+        keys[VK_MBUTTON] = true;
+        return 0;
+
+        // botão direito do mouse pressionado
+    case WM_RBUTTONDOWN:
+    case WM_RBUTTONDBLCLK:
+        keys[VK_RBUTTON] = true;
+        return 0;
+
+        // botão esquerdo do mouse liberado
+    case WM_LBUTTONUP:
+        keys[VK_LBUTTON] = false;
+        return 0;
+
+        // botão do meio do mouse liberado
+    case WM_MBUTTONUP:
+        keys[VK_MBUTTON] = false;
+        return 0;
+
+        // botão direito do mouse liberado
+    case WM_RBUTTONUP:
+        keys[VK_RBUTTON] = false;
         return 0;
     }
 
