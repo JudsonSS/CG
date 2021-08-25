@@ -15,7 +15,7 @@ O número dos laboratórios seguem o número das aulas, de acordo com a sequênc
 08. Desenho no Direct3D
 09. Curvas no Plano
 10. Álgebra Vetorial
-11. ÁLgebra Matricial
+11. Álgebra Matricial
 12. Transformações
 
 O material está sendo constantemente revisado e melhorado. Qualquer contribuição é bem vinda.
