@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Setter", "Setter\Setter.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vector", "Vector\Vector.vcxproj", "{6A24053C-6E04-4215-9AE4-CE17CABE8DFB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoadStore", "LoadStore\LoadStore.vcxproj", "{86C23C23-01F5-430A-9E1E-3C66001B49B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{6A24053C-6E04-4215-9AE4-CE17CABE8DFB}.Release|x64.Build.0 = Release|x64
 		{6A24053C-6E04-4215-9AE4-CE17CABE8DFB}.Release|x86.ActiveCfg = Release|Win32
 		{6A24053C-6E04-4215-9AE4-CE17CABE8DFB}.Release|x86.Build.0 = Release|Win32
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Debug|x64.ActiveCfg = Debug|x64
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Debug|x64.Build.0 = Debug|x64
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Debug|x86.ActiveCfg = Debug|Win32
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Debug|x86.Build.0 = Debug|Win32
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Release|x64.ActiveCfg = Release|x64
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Release|x64.Build.0 = Release|x64
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Release|x86.ActiveCfg = Release|Win32
+		{86C23C23-01F5-430A-9E1E-3C66001B49B3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
