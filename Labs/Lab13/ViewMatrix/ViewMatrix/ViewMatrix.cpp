@@ -62,9 +62,10 @@ int main()
 	cout << "up     = " << up << endl << endl;
 	cout << "V = " << endl << V << endl;
 
-	// um vértice na posição (0,1,0) nas coordenadas da câmera
+	// um vértice na posição (0,1,0) nas coordenadas do mundo
 	XMVECTOR vertex = XMVectorSet(0, 1, 0, 1);
 
+	// vértice transformado para as coordenadas da câmera
 	cout << "vertex = " << XMVector3TransformCoord(vertex,V) << endl;
 	
 	return 0;
