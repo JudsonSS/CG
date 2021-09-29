@@ -18,5 +18,7 @@ O número dos laboratórios seguem o número das aulas, de acordo com a sequênc
 11. Álgebra Matricial
 12. Transformações
 13. Projeção 3D
+14. Desenho de Objetos 3D
+15. Construção de Geometrias 3D
 
 O material está sendo constantemente revisado e melhorado. Qualquer contribuição é bem vinda.
