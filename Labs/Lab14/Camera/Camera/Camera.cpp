@@ -62,27 +62,27 @@ void Camera::Update()
     if (input->KeyDown(VK_LBUTTON))
     {
         // cada pixel corresponde a 1/4 de grau
-        float dx = XMConvertToRadians(0.25f * static_cast<float>(mousePosX - lastMousePosX));
-        float dy = XMConvertToRadians(0.25f * static_cast<float>(mousePosY - lastMousePosY));
+        float dx = XMConvertToRadians(0.25f * (mousePosX - lastMousePosX));
+        float dy = XMConvertToRadians(0.25f * (mousePosY - lastMousePosY));
 
         // atualiza ângulos com base no deslocamento do mouse 
         // para orbitar a câmera ao redor da caixa
         theta += dx;
         phi += dy;
 
-        // restringe o ângulo de phi
+        // restringe o ângulo de phi ]0-180[ graus
         phi = phi < 0.1f ? 0.1f : (phi > (XM_PI - 0.1f) ? XM_PI - 0.1f : phi);
     }
     else if (input->KeyDown(VK_RBUTTON))
     {
-        // cada pixel corresponde a 0.005 unidades
-        float dx = 0.005f * static_cast<float>(mousePosX - lastMousePosX);
-        float dy = 0.005f * static_cast<float>(mousePosY - lastMousePosY);
+        // cada pixel corresponde a 0.05 unidades
+        float dx = 0.05f * (mousePosX - lastMousePosX);
+        float dy = 0.05f * (mousePosY - lastMousePosY);
 
         // atualiza o raio da câmera com base no deslocamento do mouse 
         radius += dx - dy;
 
-        // restringe o raio
+        // restringe o raio (3 a 15 unidades)
         radius = radius < 3.0f ? 3.0f : (radius > 15.0f ? 15.0f : radius);
     }
 
