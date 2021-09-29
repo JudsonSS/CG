@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="App">
+      <UniqueIdentifier>{005db8d9-e424-4b7b-9273-3df31b8b0df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXUT">
+      <UniqueIdentifier>{05a16ce0-70b2-4935-9a38-e7e9ff778ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXUT\Arquivos de Origem">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="DXUT\Arquivos de Cabeçalho">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="DXUT\Arquivos de Recurso">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="App\Arquivos de Sombreamento">
+      <UniqueIdentifier>{0d172b89-1b76-41f6-a5f0-46ddd98ef0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Arquivos de Cabeçalho">
+      <UniqueIdentifier>{b458ad60-15a4-47b7-aa49-c10e7a29cc61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Arquivos de Origem">
+      <UniqueIdentifier>{0ad91295-807c-4c86-a045-fa86bf8962bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>DXUT\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>App\Arquivos de Origem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>DXUT\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>App\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Pixel.hlsl">
+      <Filter>App\Arquivos de Sombreamento</Filter>
+    </FxCompile>
+    <FxCompile Include="Vertex.hlsl">
+      <Filter>App\Arquivos de Sombreamento</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>DXUT\Arquivos de Recurso</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
