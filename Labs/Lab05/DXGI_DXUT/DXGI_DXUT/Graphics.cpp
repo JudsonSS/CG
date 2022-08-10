@@ -2,8 +2,8 @@
 // Graphics (Código Fonte)
 // 
 // Criação:		06 Abr 2011
-// Atualização: 04 Ago 2021
-// Compilador:	Visual C++ 2019
+// Atualização: 10 Ago 2022
+// Compilador:	Visual C++ 2022
 //
 // Descrição:	Usa funções do Direct3D 12 para acessar a GPU
 //
@@ -203,10 +203,29 @@ void Graphics::Initialize(Window * window)
 	ThrowIfFailed(CreateDXGIFactory2(factoryFlags, IID_PPV_ARGS(&factory)));
 
 	// cria objeto para dispositivo gráfico
-	ThrowIfFailed(D3D12CreateDevice(
-		nullptr,								// adaptador de vídeo (nullptr = adaptador padrão)
-		D3D_FEATURE_LEVEL_11_0,					// versão mínima dos recursos do Direct3D
-		IID_PPV_ARGS(&device)));				// guarda o dispositivo D3D criado
+	if FAILED(D3D12CreateDevice(
+		nullptr,                                // adaptador de vídeo (nullptr = adaptador padrão)
+		D3D_FEATURE_LEVEL_11_0,                 // versão mínima dos recursos do Direct3D
+		IID_PPV_ARGS(&device)))                 // guarda o dispositivo D3D criado
+	{
+		// tenta criar um dispositivo WARP 
+		IDXGIAdapter* warp;
+		ThrowIfFailed(factory->EnumWarpAdapter(IID_PPV_ARGS(&warp)));
+
+		// cria objeto D3D usando dispositivo WARP
+		ThrowIfFailed(D3D12CreateDevice(
+			warp,                               // adaptador de vídeo WARP (software)
+			D3D_FEATURE_LEVEL_11_0,             // versão mínima dos recursos do Direct3D
+			IID_PPV_ARGS(&device)));            // guarda o dispositivo D3D criado
+
+		// libera objeto não mais necessário
+		warp->Release();
+
+		// informa uso de um disposito WARP:
+		// implementa as funcionalidades do 
+		// D3D12 em software (lento)
+		OutputDebugString("---> Usando Adaptador WARP: não há suporte ao D3D12\n");
+	}
 
 	// exibe informações do hardware gráfico no Output do Visual Studio
 #ifdef _DEBUG

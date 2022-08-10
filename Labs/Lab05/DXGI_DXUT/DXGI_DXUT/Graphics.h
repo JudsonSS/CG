@@ -2,8 +2,8 @@
 // Graphics (Arquivo de Cabeçalho)
 // 
 // Criação:     06 Abr 2011
-// Atualização: 04 Ago 2021
-// Compilador:  Visual C++ 2019
+// Atualização: 10 Ago 2022
+// Compilador:  Visual C++ 2012
 //
 // Descrição:   Usa funções do Direct3D 12 para acessar a GPU
 //
