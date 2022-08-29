@@ -148,8 +148,8 @@ void Triangle::BuildPipelineState()
     ID3DBlob* vertexShader;
     ID3DBlob* pixelShader;
 
-    D3DReadFileToBlob(L"../x64/Debug/Vertex.cso", &vertexShader);
-    D3DReadFileToBlob(L"../x64/Debug/Pixel.cso", &pixelShader);
+    D3DReadFileToBlob(L"Shaders/Vertex.cso", &vertexShader);
+    D3DReadFileToBlob(L"Shaders/Pixel.cso", &pixelShader);
 
     // --------------------
     // ---- Rasterizer ----
